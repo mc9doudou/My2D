@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fc37820c1a482b44d9eadb711a61526a
+guid: 15562816c351f81458885a191e2b70db
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2974594986988179143
-    second: adventurer-run-05_0
+      213: -4774925071020832055
+    second: adventurer-walk-02_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: adventurer-run-05_0
+      name: adventurer-walk-02_0
       rect:
         serializedVersion: 2
-        x: 15
+        x: 0
         y: 0
-        width: 22
-        height: 27
+        width: 50
+        height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 93179e19e9d18b6d0800000000000000
-      internalID: -2974594986988179143
+      spriteID: 9ca42b052fe0cbdb0800000000000000
+      internalID: -4774925071020832055
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b730c36aa6fe22144be1d6ed4ca87bed
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      adventurer-run-05_0: -2974594986988179143
+      adventurer-walk-02_0: -4774925071020832055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
