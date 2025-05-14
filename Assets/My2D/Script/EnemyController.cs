@@ -22,6 +22,7 @@ namespace My2D
         //플레이어 감지
         public DetectionZone detectionZone;
         private Damageable damageable;
+        public DetectionZone cliffeDetection;
 
         //걷는 속도 - 좌우로 걷는다
         [SerializeField] private float walkSpeed = 4f;
@@ -37,7 +38,6 @@ namespace My2D
 
         //적 감지
         private bool hasTarget = false;
-
         #endregion
 
         #region Property
@@ -103,7 +103,6 @@ namespace My2D
                 animator.SetFloat(AnimationString.cooldownTime, value);
             }
         }
-
         #endregion
 
         #region Unity Event Method
@@ -116,6 +115,9 @@ namespace My2D
             damageable = this.GetComponent<Damageable>();
             //델리게이트 함수 등록
             damageable.hitAction += OnHit;
+
+            //cliffeDetection 이벤트 함수 등록
+            cliffeDetection.noColliderRamain += Flip;
         }
         private void Update()
         {
@@ -135,7 +137,6 @@ namespace My2D
             {
                 Flip();
             }
-
             //좌우 이동
             if (damageable.LockVelocity == false)
             {
@@ -148,8 +149,6 @@ namespace My2D
                     rb2D.linearVelocity = new Vector2(directionVector.x * walkSpeed, rb2D.linearVelocityY);
                 }
             }
-            
-            
         }
         #endregion
         #region Custom Method
@@ -166,7 +165,7 @@ namespace My2D
             }
             else
             {
-                Debug.Log("방향 전환 에러");
+                //Debug.Log("방향 전환 에러");
             }
         }
         public void OnHit(float damage, Vector2 knockback)

@@ -74,7 +74,6 @@ namespace My2D
                 if (CannotMove)
                 {
                     return 0f;
-
                 }
 
                 //인풋 값이 들어왔을때 and 벽에 부딫이지 않을때
@@ -118,7 +117,6 @@ namespace My2D
                 }
                 isFacingRight = value;
             }
-
         }
         //공격시 이동 제어값 읽어오기
         public bool CannotMove
@@ -141,7 +139,6 @@ namespace My2D
             damageable = this.GetComponent<Damageable>();
             //델리게이트 함수 등록
             damageable.hitAction += OnHit;
-
         }
         private void FixedUpdate()
         {
@@ -150,7 +147,6 @@ namespace My2D
             {
                 rb2D.linearVelocity = new Vector2(inputMove.x * CurrentSpeed, rb2D.linearVelocityY);
             }
-
             //애니메이터 속도값 셋팅
             animator.SetFloat(AnimationString.yVelocity, rb2D.linearVelocityY);
         }
@@ -172,7 +168,6 @@ namespace My2D
             {
                 IsMoving = false;
             }
-            
         }
         public void OnRun(InputAction.CallbackContext context)
         {
@@ -202,6 +197,14 @@ namespace My2D
             {
                 //공격 애니메이션
                 animator.SetTrigger(AnimationString.attackTrigger);
+            }
+        }
+        public void OnBowAttack(InputAction.CallbackContext context)
+        {
+            if (context.started && touchingDirection.IsGround)
+            {
+                //화살 공격 애니메이션
+                animator.SetTrigger(AnimationString.bowAttackTrigger);
             }
         }
         //반전, 바라보는 방향 전환 - 입력값에 따라

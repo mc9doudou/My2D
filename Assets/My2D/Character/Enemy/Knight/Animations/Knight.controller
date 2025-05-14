@@ -71,6 +71,7 @@ AnimatorState:
   m_Transitions: []
   m_StateMachineBehaviours:
   - {fileID: 3207782899026959742}
+  - {fileID: -3926799664416464725}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -113,6 +114,7 @@ AnimatorState:
   - {fileID: 1262163739803510224}
   m_StateMachineBehaviours:
   - {fileID: -7114442527618557981}
+  - {fileID: 3166472616122281795}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -154,6 +156,20 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &-3926799664416464725
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39da806690c96a45a586c4ea1d41d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayTime: 0.8
+  fadeTime: 0.5
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -332,6 +348,23 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 100, y: -60, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -4080154324786174854}
+--- !u!114 &3166472616122281795
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578222283ac045e438b326ec9422f0bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boolName: CannotMove
+  updateOnState: 1
+  updateOnStateMachine: 0
+  valueEnter: 1
+  valueExit: 0
 --- !u!114 &3207782899026959742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -344,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 578222283ac045e438b326ec9422f0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boolName: IsDeath
+  boolName: CannotMove
   updateOnState: 1
   updateOnStateMachine: 0
   valueEnter: 1
@@ -437,20 +470,23 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsDeath
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: LockVelocity
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6856911274132257399}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1109 &8081509952101702941
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -498,4 +534,4 @@ AnimatorStateTransition:
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0

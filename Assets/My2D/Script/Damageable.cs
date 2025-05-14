@@ -70,7 +70,6 @@ namespace My2D
                 isDeath = value;
             }
         }
-        
         //이동속도 잠그기
         public bool LockVelocity
         {
@@ -83,6 +82,9 @@ namespace My2D
                 animator.SetBool(AnimationString.lockVelocity, value);
             }
         }
+        //hp 풀 체크
+        public bool IsHealthFull => currentHealth >= MaxHealth;
+       
         #endregion
 
         #region Unity Event Mathod
@@ -107,6 +109,7 @@ namespace My2D
         #endregion
 
         #region Custom Method
+        //Health 감산
         //매개변수로 데미지량과 뒤로 밀리는 값을 받아온다
         public bool TakeDamage(float damage, Vector2 knockback)
         {
@@ -116,8 +119,8 @@ namespace My2D
             }
 
             //대미지 입기 
-            currentHealth -= damage;
-            Debug.Log($"CurrentHealth : {currentHealth}");
+            CurrentHealth -= damage;
+            /*Debug.Log($"CurrentHealth : {CurrentHealth}");*/
 
             //무적 모드 셋팅 - 카이머 초기화
             isInvincible = true;
@@ -127,20 +130,56 @@ namespace My2D
             animator.SetTrigger(AnimationString.hitTrigger);
             LockVelocity = true;
 
-            //델리게이트 함수에 등록된 함수 호출
+            //효과: SFX, VFX, 넉백효과, UI효과
+
+            //델리게이트 함수에 등록된 함수 호출: 넉백효과,
             /*if (hitAction != null)
             {
                 hitAction.Invoke(damage, knockback);
             }*/
             hitAction?.Invoke(damage, knockback);
 
+            //UI 효과 - 데미지text 프리팹 생성하는 함수가 등록된 이벤트 함수 호출
+            CharacterEvent.characterDamaged?.Invoke(gameObject, damage);
+
             return true;
         }
 
         private void Die()
         {
-            isDeath = true;
+            IsDeath = true;
             animator.SetBool(AnimationString.isDeath,true);
+
+        }
+
+        //Health 가산 - 매개변수 만큼 Health 충전
+        //참을 반환하면 health를 실질적으로 충전, 거짓 반환하면 충전하지 않았다
+        public bool Heal(float healAmount)
+        {
+            //죽음 체크
+            if (IsDeath || IsHealthFull)
+            {
+                return false;
+            }
+
+            //힐하기전의 hp
+            float beforeHealth = CurrentHealth;
+
+            //힐하기
+            CurrentHealth += healAmount;
+            if (CurrentHealth > MaxHealth)
+            {
+                CurrentHealth = MaxHealth;
+            }
+
+            //실제 힐 값은 
+            float actualHealth = CurrentHealth - beforeHealth;
+
+            //UI 효과 - 힐
+            //Health Text,Health Bar 관련함수 호출
+            CharacterEvent.characterHeal?.Invoke(gameObject, actualHealth);
+
+            return true;
         }
         #endregion
     }

@@ -27,10 +27,10 @@ namespace My2D
 
                 bool isHit = damageable.TakeDamage(attackDamage, deliveredKnockback);
 
-                if (isHit)
+                /*if (isHit)
                 {
                     Debug.Log(collision.name + "hit for " + attackDamage);
-                }
+                }*/
             }
         }
         
